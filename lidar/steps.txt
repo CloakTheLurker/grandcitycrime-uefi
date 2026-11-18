@@ -1,0 +1,24 @@
+heights per roof part and roof colours, same box as the map
+
+laser scan: noaa's 2019 topobathy point cloud, from the usgs public lidar bucket on aws (usgs-lidar-public), public domain
+python lidar/fetch.py lidar/raw 10 FL_TopobathyFLKeysNOAA_Hydroflattened_2019 -80.205 25.758 -80.115 25.800
+    about 1,350 laz files, 394 MB, 48.8 million points
+python lidar/dsm.py lidar/raw lidar
+    needs laspy, lazrs and numpy. writes lidar/top.npy (highest point per 1.12 m cell) and lidar/ground.npy
+
+aerial photos: usda naip from the usgs national map image service, public domain
+python naip/fetch.py
+    six tiles into naip/raw, stitched to naip/miami.png, 1e-5 degrees per pixel
+
+python lidar/roofs.py
+    needs scipy and pillow. splits every outline into its height levels, reads a roof colour, writes lidar/parts.json
+ground from the photos: the same naip photos, the infrared band too (naip/fetch.py gets both)
+python naip/cells.py
+    averages photo colour, infrared and scan height over every 2.8 m ground cell, writes naip/cells.npz
+parking areas: openstreetmap amenity=parking, the query is osm/parking.txt, saved as osm/parking.json
+python osm/bake.py
+    uses lidar/parts.json when it is there
+    uses naip/cells.npz and osm/parking.json when they are there: green cells become grass, parking areas become lots, naip/ground.py does the sorting
+    trees: green cells more than 4.5 m above the ground in the scan, one tree per crown, palms told from broad trees by how wide the green is round the top
+
+the scan stops short of the west edge of the map (west of about -80.197) and the top 250 m, those buildings keep the county heights

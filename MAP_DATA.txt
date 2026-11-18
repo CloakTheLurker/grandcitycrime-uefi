@@ -1,0 +1,4 @@
+roads, coast, parks, water, parking lots, a few buildings and some tower heights (c) openstreetmap contributors, odbl, openstreetmap.org/copyright
+building outlines, heights and uses are miami-dade county open data (building footprint 2d, large building, building footprint ubid folio), provided as is, gis-mdc.opendata.arcgis.com
+heights per roof part are measured from the 2019 noaa topobathy lidar (usgs 3dep public lidar), roof colours, grass, lot shades and tree positions from usda naip aerial photos (usgs national map), both public domain
+map.bin is baked from all of it with osm/bake.py, see lidar/steps.txt

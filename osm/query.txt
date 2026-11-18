@@ -1,0 +1,12 @@
+[out:json][timeout:300][maxsize:536870912];
+(
+  way["highway"~"^(motorway|trunk|primary|secondary|tertiary|residential|unclassified|motorway_link|trunk_link|primary_link|secondary_link|tertiary_link|living_street)$"](25.758,-80.205,25.800,-80.115);
+  way["building"](25.758,-80.205,25.800,-80.115);
+  relation["building"](25.758,-80.205,25.800,-80.115);
+  way["natural"="coastline"](25.70,-80.30,25.86,-80.05);
+  way["natural"~"^(water|beach|sand)$"](25.758,-80.205,25.800,-80.115);
+  relation["natural"="water"](25.758,-80.205,25.800,-80.115);
+  way["leisure"~"^(park|golf_course|pitch)$"](25.758,-80.205,25.800,-80.115);
+  way["landuse"~"^(grass|recreation_ground)$"](25.758,-80.205,25.800,-80.115);
+);
+out geom;

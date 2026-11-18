@@ -1,0 +1,1 @@
+people are makehuman models (cc0) made with the mpfb blender addon, baked with people/bake_people.py and packed with people/pack_people.py

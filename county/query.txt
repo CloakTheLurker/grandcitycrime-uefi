@@ -1,0 +1,13 @@
+miami-dade county open data, arcgis feature services under
+https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/
+
+same box as the osm query: longitude -80.205 to -80.115, latitude 25.758 to 25.800
+each layer: <name>/FeatureServer/0/query with where=1=1, geometry=-80.205,25.758,-80.115,25.800,
+geometryType=esriGeometryEnvelope, inSR=4326, outSR=4326, spatialRel=esriSpatialRelIntersects,
+orderByFields=OBJECTID, resultRecordCount=2000, resultOffset=0,2000,4000..., f=geojson
+
+BuildingFootprint2D_gdb         outFields OBJECTID,SOURCE,YEARUPDATE,TYPE,HEIGHT                          -> county/raw/bld_<offset>.geojson
+LargeBuilding_gdb               outFields OBJECTID,SOURCE,YEAR_UPD,HEIGHT                                 -> county/raw/large_<offset>.geojson
+BuildingFootprintUBIDFolio_gdb  outFields OBJECTID,UNIQUEID,SOURCE,TYPE,BLDG_HEIGHT,FLOORS,YEAR_BUILT,BLDG_TYPE -> county/raw/folio_<offset>.geojson
+
+heights are in feet
